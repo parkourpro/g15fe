@@ -1,17 +1,15 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Form } from 'react-bootstrap'
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 
-const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
+const DialogCreateToppingForm = ({ visible, onHide, onCreate }) => {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
         imageUrl: '',
-        priceS: 0,
-        priceM: 0,
-        priceL: 0,
+        price: 0,
+       
     });
     const [initialFormData] = useState({ ...formData })
 
@@ -26,7 +24,7 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('/pizzas', formData);
+            const res = await axios.post('/toppings', formData);
             console.log(res.data);
             onCreate()
             // Clear the form fields after successful submission
@@ -44,7 +42,7 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
             // className="sm:w-full md:w-11/12 lg:w-3/4 xl:w-2/3 2xl:w-1/2 mx-auto"
             // onHide={onHide}
             closable={false}
-            header="Create new Pizza"
+            header="Create new Topping"
             footer={
                 <div>
                     <Button label="Cancel" onClick={onHide} className="p-button-secondary" />
@@ -98,50 +96,21 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
                         </div>
                         <div className="grid grid-cols-3 gap-4 mb-4">
                             <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="priceS">
-                                    Price (Small)
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
+                                    Price
                                 </label>
                                 <input
                                     className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="priceS"
+                                    id="price"
                                     type="number"
                                     min="0"
-                                    name="priceS"
-                                    value={formData.priceS}
+                                    name="price"
+                                    value={formData.price}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="priceM">
-                                    Price (Medium)
-                                </label>
-                                <input
-                                    className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="priceM"
-                                    type="number"
-                                    min="0"
-                                    name="priceM"
-                                    value={formData.priceM}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="priceL">
-                                    Price (Large)
-                                </label>
-                                <input
-                                    className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="priceL"
-                                    type="number"
-                                    min="0"
-                                    name="priceL"
-                                    value={formData.priceL}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+                           
                         </div>
 
                     </form>
@@ -153,6 +122,6 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
     );
 };
 
-export default DialogCreatePizzaForm;
+export default DialogCreateToppingForm;
 
 

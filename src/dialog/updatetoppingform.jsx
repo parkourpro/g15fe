@@ -1,19 +1,30 @@
 import axios from 'axios';
-import { useState } from 'react';
-import { Form } from 'react-bootstrap'
+import { useState, useEffect } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 
-const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
+const DialogUpdateTopping = ({ visible, onHide, id, onUpdate  }) => {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
         imageUrl: '',
-        priceS: 0,
-        priceM: 0,
-        priceL: 0,
+        price: 0
     });
-    const [initialFormData] = useState({ ...formData })
+
+
+    useEffect(() => {
+        const getPizzaInfo = async () => {
+            try {
+                const res = await axios.get(`/toppings/${id}`)
+                setFormData(res.data)
+                // console.log(res.data)
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        getPizzaInfo()
+    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,19 +34,15 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
         }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleUpdate = async () => {
         try {
-            const res = await axios.post('/pizzas', formData);
-            console.log(res.data);
-            onCreate()
-            // Clear the form fields after successful submission
+          await axios.put(`/toppings/${id}`, formData);
+          onUpdate()
+          onHide()
         } catch (error) {
-            console.error('Error:', error);
+          console.log('Error updating topping:', error);
         }
-        setFormData({ ...initialFormData })
-        onHide()
-    };
+      };
 
     return (
         <Dialog
@@ -44,17 +51,17 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
             // className="sm:w-full md:w-11/12 lg:w-3/4 xl:w-2/3 2xl:w-1/2 mx-auto"
             // onHide={onHide}
             closable={false}
-            header="Create new Pizza"
+            header="Updata Pizza Information"
             footer={
                 <div>
                     <Button label="Cancel" onClick={onHide} className="p-button-secondary" />
-                    <Button label="Submit" onClick={handleSubmit} />
+                    <Button label="Submit" onClick={handleUpdate} />
                 </div>
             }
         >
             <div className=" flex items-center justify-center">
                 <div className="bg-white p-8 rounded-lg ">
-                    <form onSubmit={handleSubmit}>
+                    <form>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                                 Name
@@ -98,61 +105,28 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
                         </div>
                         <div className="grid grid-cols-3 gap-4 mb-4">
                             <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="priceS">
-                                    Price (Small)
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
+                                    Price
                                 </label>
                                 <input
                                     className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="priceS"
+                                    id="price"
                                     type="number"
                                     min="0"
-                                    name="priceS"
-                                    value={formData.priceS}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="priceM">
-                                    Price (Medium)
-                                </label>
-                                <input
-                                    className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="priceM"
-                                    type="number"
-                                    min="0"
-                                    name="priceM"
-                                    value={formData.priceM}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="priceL">
-                                    Price (Large)
-                                </label>
-                                <input
-                                    className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="priceL"
-                                    type="number"
-                                    min="0"
-                                    name="priceL"
-                                    value={formData.priceL}
+                                    name="price"
+                                    value={formData.price}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
-
-
         </Dialog>
     );
 };
 
-export default DialogCreatePizzaForm;
+export default DialogUpdateTopping;
 
 
