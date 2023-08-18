@@ -29,28 +29,55 @@ const EachPizza = ({ data, onDelete, onUpdate }) => {
     }
   };
 
-  
+
 
   return (
-    <div className="grid grid-cols-7 gap-4 my-6">
-      <div className="text-xl ms-3 underlin flex items-center">{data.name}</div>
-      <div className="text-xl flex items-center">{data.description}</div>
-      <div className="text-xl flex items-center"><img src={data.imageUrl} alt="" /></div>
-      <div className="text-xl flex items-center">{data.priceS}</div>
-      <div className="text-xl flex items-center">{data.priceM}</div>
-      <div className="text-xl flex items-center">{data.priceL}</div>
-      <div className="">
-        <div className='m-2'>
-          <Button
-            className='w-24'
-            label="Edit" severity="help" onClick={showDialogUpdate} />
+    <div>
+      {/* each item here */}
+      <div className='flex m-4 justify-between'>
+        <div className='flex'>
+          {/* image */}
+          <div>
+            <img src={data.imageUrl} style={{ width: '5cm', height: '5cm', objectFit: 'cover' }} />
+          </div>
+          {/* detail  */}
+          <div className='max-w-xs m-2'>
+            <div className="text-yellow-300 font-bold text-2xl underlin flex items-center">{data.name}
+            </div>
+            <div className="text-sm flex items-center">{data.description}</div>
+            <div className="grid grid-cols-3 grid-rows-2 gap-4 text-lime-50">
+              <div className="col-span-1">
+                <div className="text-xl flex items-center">Price of size S</div>
+                <div className="text-xl flex items-center">{data.priceS}</div>
+              </div>
+              <div className="col-span-1">
+                <div className="text-xl flex items-center">Price of size M</div>
+                <div className="text-xl flex items-center">{data.priceM}</div>
+              </div>
+              <div className="col-span-1">
+                <div className="text-xl flex items-center">Price of size L</div>
+                <div className="text-xl flex items-center">{data.priceL}</div>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <div className='m-2'>
-          <Button
-            className='w-24'
-            label="Delete" severity="danger" onClick={showDialog} />
+        <div className="flex items-center">
+          <div>
+            <div className='m-2'>
+              <Button
+                className='w-24'
+                label="Edit" severity="help" onClick={showDialogUpdate} />
+            </div>
+            <div className='m-2'>
+              <Button
+                className='w-24'
+                label="Delete" severity="danger" onClick={showDialog} />
+            </div>
+          </div>
         </div>
       </div>
+
       <DialogUpdatePizza
         id={id}
         visible={visibleupdate}

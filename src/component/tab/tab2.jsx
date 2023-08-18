@@ -36,15 +36,7 @@ const Tab2 = () => {
         severity="success"
         icon="pi pi-plus" label="Create New"
         onClick={() => setVisible(true)} />
-      <div className="grid grid-cols-7 gap-4">
-        <div className="py-2 px-4 font-bold text-orange-500 text-lg">Name</div>
-        <div className="py-2 px-4 font-bold text-orange-500 text-lg">Description</div>
-        <div className="py-2 px-4 font-bold text-orange-500 text-lg">Image URL</div>
-        <div className="py-2 px-4 font-bold text-orange-500 text-lg">Price (Small)</div>
-        <div className="py-2 px-4 font-bold text-orange-500 text-lg">Price (Medium)</div>
-        <div className="py-2 px-4 font-bold text-orange-500 text-lg">Price (Large)</div>
-        <div className="py-2 px-4 font-bold text-orange-500 text-lg">Action</div>
-      </div>
+      
       {listPizzas.map((each, index) => (
         <EachPizza data={each} key={index}
           onDelete={handleUpdate}
