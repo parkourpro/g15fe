@@ -35,7 +35,7 @@ const DialogConfirmLogout = ({ visible, onHide }) => {
     return (
         <Dialog
             visible={visible}
-            onHide={hideDialog}
+            onHide={onHide}
             header="Logout"
             footer={
                 <div>

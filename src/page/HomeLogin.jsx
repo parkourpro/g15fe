@@ -35,17 +35,15 @@ export default function LoginPage() {
           setShowModal(true);
           setRedirectToHome(true);
         } else {
-          setModalMessage("Login invalid.");
+          setModalMessage("Username or Password is incorect");
           setShowModal(true);
         }
       } else {
-        setModalMessage("Login invalid.");
+        setModalMessage("Username or Password is incorect");
         setShowModal(true);
       }
     } catch (err) {
       console.log(err);
-      setModalMessage("Username or Password is incorect");
-      setShowModal(true);
     }
 
   }
@@ -61,21 +59,21 @@ export default function LoginPage() {
 
         <form className="mt-10" onSubmit={handleLoginSubmit}>
           <div className="pt-2 pb-3 px-5 rounded-2xl bg-stone-800 mb-4">
-            <h1 className="text-stone-500 text-sm">Username</h1>
+            <h1 className="text-white text-sm">Username</h1>
             <input
               value={username}
               onChange={(ev) => setUsername(ev.target.value)}
-              className="bg-stone-800 w-full outline-none"
+              className="bg-white w-full outline-none"
               type="text"
               placeholder="username"
             />
           </div>
           <div className="pt-2 pb-3 px-5 rounded-2xl bg-stone-800 ">
-            <h1 className="text-stone-500 text-sm">Password</h1>
+            <h1 className="text-white text-sm">Password</h1>
             <input
               value={password}
               onChange={(ev) => setPassword(ev.target.value)}
-              className="bg-stone-800 w-full outline-none"
+              className="bg-white w-full outline-none"
               type="password"
               placeholder="•••••••"
             />

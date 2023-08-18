@@ -1,9 +1,15 @@
 
-const Tab3 = () =>{
-    return(
-        <>
-        jjj
-        </>
-    )
-}
-export default Tab3
+
+
+
+const Tab3 = () => {
+  
+  return (
+    <>
+    </>
+  );
+};
+
+export default Tab3;
+
+
