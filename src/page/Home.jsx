@@ -58,6 +58,14 @@ const Home = () => {
                         <i className="pi pi-box p-2 m-2"></i>
                         MANAGE COMBO BOX
                     </div>
+                    {/* //tab6 */}
+                    <div
+                        className={`p-2 cursor-pointer hover:bg-sky-700 ${activeTab == 'tab6' ? 'bg-sky-700' : ''}`}
+                        onClick={() => setActiveTab('tab6')}
+                    >
+                        <i className="pi pi-box p-2 m-2"></i>
+                        MANAGE COMBO BOX
+                    </div>
                 </div>
             </div>
             {/* mainbar */}
