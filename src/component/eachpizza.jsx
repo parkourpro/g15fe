@@ -48,15 +48,15 @@ const EachPizza = ({ data, onDelete, onUpdate }) => {
             <div className="grid grid-cols-3 grid-rows-2 gap-4 text-lime-50">
               <div className="col-span-1">
                 <div className="text-xl flex items-center">Price of size S</div>
-                <div className="text-xl flex items-center">{data.priceS}</div>
+                <div className="text-xl flex items-center">{data.price.S}</div>
               </div>
               <div className="col-span-1">
                 <div className="text-xl flex items-center">Price of size M</div>
-                <div className="text-xl flex items-center">{data.priceM}</div>
+                <div className="text-xl flex items-center">{data.price.M}</div>
               </div>
               <div className="col-span-1">
                 <div className="text-xl flex items-center">Price of size L</div>
-                <div className="text-xl flex items-center">{data.priceL}</div>
+                <div className="text-xl flex items-center">{data.price.L}</div>
               </div>
             </div>
 

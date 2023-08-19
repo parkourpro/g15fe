@@ -9,25 +9,38 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
         name: '',
         description: '',
         imageUrl: '',
-        priceS: 0,
-        priceM: 0,
-        priceL: 0,
+        price:{
+            S:0,
+            M:0,
+            L:0
+        }
     });
     const [initialFormData] = useState({ ...formData })
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
+          ...prevData,
+          [name]: value,
         }));
-    };
+      };
+    
+      const handlePriceChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+          ...prevData,
+          price: {
+            ...prevData.price,
+            [name]: parseFloat(value),
+          },
+        }));
+      };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post('/pizzas', formData);
-            console.log(res.data);
+            // console.log(res.data);
             onCreate()
             // Clear the form fields after successful submission
         } catch (error) {
@@ -106,9 +119,9 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
                                     id="priceS"
                                     type="number"
                                     min="0"
-                                    name="priceS"
-                                    value={formData.priceS}
-                                    onChange={handleChange}
+                                    name="S"
+                                    value={formData.price.S}
+                                    onChange={handlePriceChange}
                                     required
                                 />
                             </div>
@@ -121,9 +134,9 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
                                     id="priceM"
                                     type="number"
                                     min="0"
-                                    name="priceM"
-                                    value={formData.priceM}
-                                    onChange={handleChange}
+                                    name="M"
+                                    value={formData.price.M}
+                                    onChange={handlePriceChange}
                                     required
                                 />
                             </div>
@@ -136,9 +149,9 @@ const DialogCreatePizzaForm = ({ visible, onHide, onCreate }) => {
                                     id="priceL"
                                     type="number"
                                     min="0"
-                                    name="priceL"
-                                    value={formData.priceL}
-                                    onChange={handleChange}
+                                    name="L"
+                                    value={formData.price.L}
+                                    onChange={handlePriceChange}
                                     required
                                 />
                             </div>

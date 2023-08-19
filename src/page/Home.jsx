@@ -42,6 +42,22 @@ const Home = () => {
                         <i className="pi pi-shopping-bag p-2 m-2"></i>
                         MANAGE TOPPING
                     </div>
+                    {/* //tab4 */}
+                    <div
+                        className={`p-2 cursor-pointer hover:bg-sky-700 ${activeTab == 'tab4' ? 'bg-sky-700' : ''}`}
+                        onClick={() => setActiveTab('tab4')}
+                    >
+                        <i className="pi pi-box p-2 m-2"></i>
+                        MANAGE SIDE DISHES
+                    </div>
+                    {/* //tab5 */}
+                    <div
+                        className={`p-2 cursor-pointer hover:bg-sky-700 ${activeTab == 'tab5' ? 'bg-sky-700' : ''}`}
+                        onClick={() => setActiveTab('tab5')}
+                    >
+                        <i className="pi pi-box p-2 m-2"></i>
+                        MANAGE COMBO BOX
+                    </div>
                 </div>
             </div>
             {/* mainbar */}

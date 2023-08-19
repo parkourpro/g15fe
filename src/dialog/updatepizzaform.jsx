@@ -8,33 +8,44 @@ const DialogUpdatePizza = ({ visible, onHide, id, onUpdate  }) => {
         name: '',
         description: '',
         imageUrl: '',
-        priceS: 0,
-        priceM: 0,
-        priceL: 0,
+        price:{
+            S:0,
+            M:0,
+            L:0
+        }
     });
 
 
     useEffect(() => {
         const getPizzaInfo = async () => {
             try {
-                const res = await axios.get(`/pizzas/${id}`)
-                setFormData(res.data)
-                // console.log(res.data)
+                const res = await axios.get(`/pizzas/${id}`);
+                setFormData(res.data);
+            } catch (err) {
+                console.log(err);
             }
-            catch (err) {
-                console.log(err)
-            }
-        }
-        getPizzaInfo()
-    }, [])
+        };
+        getPizzaInfo();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
+          ...prevData,
+          [name]: value,
         }));
-    };
+      };
+    
+      const handlePriceChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+          ...prevData,
+          price: {
+            ...prevData.price,
+            [name]: parseFloat(value),
+          },
+        }));
+      };
 
     const handleUpdate = async () => {
         try {
@@ -115,9 +126,9 @@ const DialogUpdatePizza = ({ visible, onHide, id, onUpdate  }) => {
                                     id="priceS"
                                     type="number"
                                     min="0"
-                                    name="priceS"
-                                    value={formData.priceS}
-                                    onChange={handleChange}
+                                    name="S"
+                                    value={formData.price.S}
+                                    onChange={handlePriceChange}
                                     required
                                 />
                             </div>
@@ -130,9 +141,9 @@ const DialogUpdatePizza = ({ visible, onHide, id, onUpdate  }) => {
                                     id="priceM"
                                     type="number"
                                     min="0"
-                                    name="priceM"
-                                    value={formData.priceM}
-                                    onChange={handleChange}
+                                    name="M"
+                                    value={formData.price.M}
+                                    onChange={handlePriceChange}
                                     required
                                 />
                             </div>
@@ -145,9 +156,9 @@ const DialogUpdatePizza = ({ visible, onHide, id, onUpdate  }) => {
                                     id="priceL"
                                     type="number"
                                     min="0"
-                                    name="priceL"
-                                    value={formData.priceL}
-                                    onChange={handleChange}
+                                    name="L"
+                                    value={formData.price.L}
+                                    onChange={handlePriceChange}
                                     required
                                 />
                             </div>

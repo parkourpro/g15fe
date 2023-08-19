@@ -1,8 +1,10 @@
 import Tab1 from "./tab/tab1"
 import Tab2 from "./tab/tab2"
 import Tab3 from "./tab/tab3"
+import Tab4 from "./tab/tab4"
+import Tab5 from "./tab/tab5"
+
 import TopMain from "./topmainbar"
-import mainImg from "../img/mainb.jpg"
 
 const Mainbar = ({ activeTab }) => {
     return (
@@ -29,6 +31,18 @@ const Mainbar = ({ activeTab }) => {
                     {activeTab == 'tab3' && <>
                         <div>
                             <Tab3 />
+                        </div>
+                    </>}
+                    {/* main tab4 */}
+                    {activeTab == 'tab4' && <>
+                        <div>
+                            <Tab4 />
+                        </div>
+                    </>}
+                    {/* main tab5 */}
+                    {activeTab == 'tab5' && <>
+                        <div>
+                            <Tab5 />
                         </div>
                     </>}
                 </div>
