@@ -18,6 +18,56 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/* Trong file CSS của bạn */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination-button:hover {
+  background-color: #0056b3;
+}
+
+.pagination-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-list {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination-link {
+  background-color: #fff;
+  color: #007BFF;
+  border: 1px solid #007BFF;
+  border-radius: 50%;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-link:hover {
+  background-color: #007BFF;
+  color: #fff;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

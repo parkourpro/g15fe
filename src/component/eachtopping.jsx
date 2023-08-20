@@ -1,24 +1,23 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Button } from 'primereact/button';
 import DialogConfirmDelete from '../dialog/confirmdelete';
 import DialogUpdateTopping from '../dialog/updatetoppingform';
-
 
 const EachTopping = ({ data, onDelete, onUpdate }) => {
   const [visible, setVisible] = useState(false);
   const [visibleupdate, setVisibleUpdate] = useState(false);
 
   const showDialogUpdate = () => {
-    setVisibleUpdate(true)
-  }
+    setVisibleUpdate(true);
+  };
+
   const showDialog = () => {
     setVisible(true);
   };
 
   const id = data._id;
-  // console.log(data)
+
   const handleDelete = async () => {
     try {
       const res = await axios.delete(`/toppings/${id}`);
@@ -27,8 +26,6 @@ const EachTopping = ({ data, onDelete, onUpdate }) => {
       console.log(err);
     }
   };
-
-
 
   return (
     <div>
@@ -41,12 +38,11 @@ const EachTopping = ({ data, onDelete, onUpdate }) => {
           </div>
           {/* detail  */}
           <div className='max-w-xs m-2'>
-            <div className="text-yellow-300 font-bold text-2xl underlin flex items-center">{data.name}
-            </div>
+            <div className="text-yellow-300 font-bold text-2xl underlin flex items-center">{data.name}</div>
             <div className="text-sm flex items-center">{data.description}</div>
             <div className="grid grid-cols-3 grid-rows-2 gap-4 text-lime-50">
               <div className="col-span-1">
-                <div className="text-xl flex items-center">Price: {data.price}$</div>
+                <div className="text-xl flex items-center">Price: {data.price.toLocaleString()} VND</div>
               </div>
               
             </div>
@@ -86,3 +82,6 @@ const EachTopping = ({ data, onDelete, onUpdate }) => {
 };
 
 export default EachTopping;
+
+
+
