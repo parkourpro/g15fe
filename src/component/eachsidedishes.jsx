@@ -70,46 +70,6 @@ const EachSideDish = ({ data, onDelete, onUpdate }) => {
                     </div>
                 </div>
             </div>
-  return (
-    <div>
-      {/* each item here */}
-      <div className='flex m-4 justify-between'>
-        <div className='flex'>
-          {/* image */}
-          <div>
-            <img src={data.imageUrl} style={{ width: '5cm', height: '5cm', objectFit: 'cover' }} />
-          </div>
-          {/* detail  */}
-          <div className='max-w-xs m-2'>
-            <div className="text-yellow-300 font-bold text-2xl underlin flex items-center">{data.name}</div>
-            <div>{data.category}</div>
-            <div className="text-sm flex items-center">Description: {data.description}</div>
-            <div className="col-span-1">
-              <div className="text-xl flex items-center">Price: {data.price} VND</div>
-            </div>
-          </div>
-        </div>
-        <div className="flex items-center">
-          <div>
-            <div className='m-2'>
-              <Button
-                className='w-24'
-                label="Edit"
-                severity="help"
-                onClick={showDialogUpdate}
-              />
-            </div>
-            <div className='m-2'>
-              <Button
-                className='w-24'
-                label="Delete"
-                severity="danger"
-                onClick={showDialog}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
 
             <DialogUpdateSideDish
                 id={id}

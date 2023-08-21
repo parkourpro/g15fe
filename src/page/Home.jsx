@@ -5,7 +5,7 @@ import 'primeicons/primeicons.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = () => {
-    const [activeTab, setActiveTab] = useState('tab5')
+    const [activeTab, setActiveTab] = useState('tab1')
 
     return (
         <div className="flex">

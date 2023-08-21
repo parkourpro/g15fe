@@ -38,13 +38,13 @@ const Tab5 = () => {
                 icon="pi pi-plus" label="Create Combo"
                 onClick={() => setVisible(true)} />
 
-            {listsd.map((each, index) => (
+            {listCb.map((each, index) => (
                 <EachComboBox data={each} key={index}
                     onDelete={handleUpdate}
                     onUpdate={handleUpdate}
                 />
             ))}
-            <DialogCreateToppingForm
+            <DialogCreateComboBoxForm
                 visible={visible}
                 onHide={() => setVisible(false)}
                 onCreate={handleUpdate} />
