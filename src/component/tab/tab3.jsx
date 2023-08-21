@@ -32,8 +32,7 @@ const Tab3 = () => {
   return (
     <div>
       <Button
-        className='m-4'
-        severity="success"
+        className='m-4 bg-amber-500 rounded-full'
         icon="pi pi-plus" label="Create New"
         onClick={() => setVisible(true)} />
       

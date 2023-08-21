@@ -28,30 +28,30 @@ const EachUser = ({ data, onDelete }) => {
 
 
     return (
-        <div className="grid grid-cols-6 gap-4 my-6">
-            <div className="text-xl ms-3 underlin flex items-center">
+        <div className="grid grid-cols-6 gap-4 my-6 bg-amber-800">
+            <div className="text-xl ms-3 underlin flex items-center text-cyan-400 my-8">
                 {data.username}
             </div>
-            <div className="text-xl font-bold flex items-center">
+            <div className="text-xl font-bold flex items-center text-cyan-300">
                 {data.name}
             </div>
-            <div className="text-xl col-span-2 italic flex items-center">
+            <div className="text-xl col-span-2 italic flex items-center text-cyan-400">
                 {data.email}
             </div>
-            <div className="text-xl flex items-center">
+            <div className="text-xl flex items-center text-cyan-400">
                 {data.phoneNumber}
             </div>
             <div className="flex items-center">
                 <Button
                 icon="pi pi-delete-left"
                 label="Delete"
-                severity="danger"
+                className='m-1 bg-amber-600 rounded-full'
                 onClick={showDialog}
                 />
             </div>
             <DialogConfirmDelete
-            hien={visible}
-            an={()=>setVisible(false)}
+            visible={visible}
+            onHide={()=>setVisible(false)}
             onDelete ={handleDelete}
             />
         </div>

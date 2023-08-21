@@ -34,45 +34,50 @@ const EachPizza = ({ data, onDelete, onUpdate }) => {
   return (
     <div>
       {/* each item here */}
-      <div className='flex m-4 justify-between'>
-        <div className='flex'>
+      <div className='flex m-4 justify-between bg-amber-800'>
+        <div className='flex jusify-between'>
           {/* image */}
-          <div>
+          <div className='flex items-center'>
             <img src={data.imageUrl} style={{ width: '5cm', height: '5cm', objectFit: 'cover' }} />
           </div>
           {/* detail  */}
-          <div className='max-w-xs m-2'>
-            <div className="text-yellow-300 font-bold text-2xl underlin flex items-center">{data.name}
-            </div>
-            <div className="text-sm flex items-center">{data.description}</div>
-            <div className="grid grid-cols-3 grid-rows-2 gap-4 text-lime-50">
-              <div className="col-span-1">
-                <div className="text-xl flex items-center">Price of size S</div>
-                <div className="text-xl flex items-center">{data.price.S}</div>
+          <div className=' my-2 ms-10 flex items-center'>
+            <div>
+              <div className="text-yellow-300 font-bold text-2xl underline flex items-center">{data.name}
               </div>
-              <div className="col-span-1">
-                <div className="text-xl flex items-center">Price of size M</div>
-                <div className="text-xl flex items-center">{data.price.M}</div>
+              <div className="max-w-xs text-md flex items-center italic text-amber-400 my-4">Description: {data.description}
               </div>
-              <div className="col-span-1">
-                <div className="text-xl flex items-center">Price of size L</div>
-                <div className="text-xl flex items-center">{data.price.L}</div>
+              <div className="grid grid-cols-3 gap-4 text-lime-50">
+                <div className="col-span-1">
+                  <div className="font-semibold text-xl flex items-center text-lime-500">Price of size S</div>
+                  <div className="text-2xl flex items-center text-yellow-500">{data.price.S} đ</div>
+                </div>
+                <div className="col-span-1">
+                  <div className="font-semibold text-xl flex items-center text-lime-500">Price of size M</div>
+                  <div className="text-2xl flex items-center text-yellow-500">{data.price.M} đ</div>
+                </div>
+                <div className="col-span-1">
+                  <div className="font-semibold text-xl flex items-center text-lime-500 ">Price of size L</div>
+                  <div className=" flex items-center text-2xl text-yellow-500">{data.price.L} đ</div>
+                </div>
               </div>
             </div>
 
           </div>
         </div>
+
+        
         <div className="flex items-center">
-          <div>
-            <div className='m-2'>
+          <div className='flex flex-col'>
+            <div className='mx-2 my-6'>
               <Button
-                className='w-24'
-                label="Edit" severity="help" onClick={showDialogUpdate} />
+                className='w-24 bg-amber-500 rounded-full'
+                label="Edit" onClick={showDialogUpdate} />
             </div>
-            <div className='m-2'>
+            <div className='mx-2 my-6'>
               <Button
-                className='w-24'
-                label="Delete" severity="danger" onClick={showDialog} />
+                className='w-24 bg-amber-500 rounded-full'
+                label="Delete"  onClick={showDialog} />
             </div>
           </div>
         </div>

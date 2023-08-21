@@ -9,12 +9,12 @@ import TopMain from "./topmainbar"
 
 const Mainbar = ({ activeTab }) => {
     return (
-        <div>
+        <div className="bg-amber-900">
             {/* //top main */}
             <div className="">
                 <TopMain />
             </div>
-            <div className="bg-amber-900 h-full">
+            <div className="bg-amber-900">
                 <div>
                     {/* main tab1 */}
                     {activeTab == 'tab1' && <>

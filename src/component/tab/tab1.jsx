@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react"
 import EachUser from "../EachUser";
+import { Button } from 'primereact/button';
 
 const Tab1 = () => {
     const [listUser, setListUser] = useState([])
+    const [searchPhoneNumber, setSearchPhoneNumber] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,6 +19,19 @@ const Tab1 = () => {
         };
         fetchData()
     }, [])
+
+    const handleSearchChange = (event) => {
+        setSearchPhoneNumber(event.target.value);
+    };
+
+    const handleSearch = async () => {
+        try {
+            const res = await axios.get(`/users?phoneNumber=${searchPhoneNumber}`);
+            setListUser(res.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
     const handleDelete = (deletedId) => {
         // Cập nhật lại danh sách người dùng sau khi xóa thành công
@@ -35,6 +50,19 @@ const Tab1 = () => {
 
     return (
         <div>
+            <div className="flex justify-center items-center">
+            <input
+                type="text"
+                placeholder="Search by Phone Number"
+                value={searchPhoneNumber}
+                onChange={handleSearchChange}
+                className=" my-4 px-2 py-3 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+            />
+            <Button
+                className='my-2 mx-1 bg-amber-500 border-0'
+                icon='pi pi-search'
+                onClick={handleSearch} />
+            </div>
             <div className="grid grid-cols-6 gap-4">
                 <div className="py-2 px-4 font-bold text-orange-500 text-2xl">
                     Username
@@ -52,9 +80,12 @@ const Tab1 = () => {
                     Action
                 </div>
             </div>
-            {listUser.map((each, index) => (
-                <EachUser data={each} key={index} onDelete={handleDelete} />
-            ))}
+            {listUser
+                .filter((user) =>
+                    user.phoneNumber.includes(searchPhoneNumber)
+                ).map((each, index) => (
+                    <EachUser data={each} key={index} onDelete={handleDelete} />
+                ))}
         </div>
     )
 }

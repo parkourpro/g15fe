@@ -6,15 +6,15 @@ import DialogCreateComboBoxForm from '../../dialog/createcombobox'
 
 
 const Tab5 = () => {
-    const [listsd, setListSd] = useState([]);
+    const [listCb, setListCb] = useState([]);
     const [visible, setVisible] = useState(false)
     const [rerender, setRerender] = useState(1)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get('/side-dishes');
-                setListSd(res.data);
+                const res = await axios.get('/combos');
+                setListCb(res.data);
                 // console.log(res.data)
             } catch (error) {
                 console.error('Error:', error);
@@ -27,25 +27,24 @@ const Tab5 = () => {
         setRerender(rerender + 1)
     };
 
-    if (!listsd) {
+    if (!listCb) {
         return <div>Loading...</div>;
     }
 
     return (
         <div>
             <Button
-                className='m-4'
-                severity="success"
+                className='m-4 bg-amber-500 rounded-full'
                 icon="pi pi-plus" label="Create Combo"
                 onClick={() => setVisible(true)} />
 
-            {listsd.map((each, index) => (
+            {listCb.map((each, index) => (
                 <EachComboBox data={each} key={index}
                     onDelete={handleUpdate}
                     onUpdate={handleUpdate}
                 />
             ))}
-            <DialogCreateToppingForm
+            <DialogCreateComboBoxForm
                 visible={visible}
                 onHide={() => setVisible(false)}
                 onCreate={handleUpdate} />

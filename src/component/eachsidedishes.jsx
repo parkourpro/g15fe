@@ -33,37 +33,39 @@ const EachSideDish = ({ data, onDelete, onUpdate }) => {
     return (
         <div>
             {/* each item here */}
-            <div className='flex m-4 justify-between'>
+            <div className='flex m-4 justify-between bg-amber-800'>
                 <div className='flex'>
                     {/* image */}
                     <div>
                         <img src={data.imageUrl} style={{ width: '5cm', height: '5cm', objectFit: 'cover' }} />
                     </div>
                     {/* detail  */}
-                    <div className='max-w-xs m-2'>
-                        <div className="text-yellow-300 font-bold text-2xl underlin flex items-center">{data.name}
+                    <div className='max-w-xs ms-6 mt-2'>
+                        <div className="text-yellow-300 font-bold text-2xl underline flex items-center">{data.name}
                         </div>
-                        <div>
-                            {data.category}
+                        <div className="ms-5 mt-2 flex items-center text-md flex items-center italic text-amber-400">{data.description}</div>
+                        <div className='mt-4 text-xl flex items-center text-lime-400'>
+                            <span className='font-semibold me-2 text-indigo-200'>Category:</span> {data.category}
                         </div>
-                        <div className="text-sm flex items-center">{data.description}</div>
-                        <div className="col-span-1">
-                            <div className="text-xl flex items-center">Price: {data.price}$</div>
+                        <div className="mt-2">
+                            <div className="text-xl items-center me-2 text-lime-400">
+                                <span className='font-semibold me-2 text-indigo-200'>Price:</span>
+                            {data.price} đ</div>
                         </div>
 
                     </div>
                 </div>
                 <div className="flex items-center">
                     <div>
-                        <div className='m-2'>
+                        <div className='m-2 my-4'>
                             <Button
-                                className='w-24'
-                                label="Edit" severity="help" onClick={showDialogUpdate} />
+                                className='w-24 bg-amber-500 rounded-full'
+                                label="Edit" onClick={showDialogUpdate} />
                         </div>
-                        <div className='m-2'>
+                        <div className='m-2 my-4'>
                             <Button
-                                className='w-24'
-                                label="Delete" severity="danger" onClick={showDialog} />
+                                className='w-24 bg-amber-500 rounded-full'
+                                label="Delete" onClick={showDialog} />
                         </div>
                     </div>
                 </div>
