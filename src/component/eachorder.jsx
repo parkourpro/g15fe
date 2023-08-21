@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import NamePizza from './getnamepizzaorder';
+import NameSideDish from './getnamesidedishorder';
+import NameCombo from './getnamecomboorder';
+import { format } from 'date-fns';
+
 
 const EachOrder = ({ data, onConfirm }) => {
     const [visible, setVisible] = useState(false);
@@ -102,6 +106,10 @@ const EachOrder = ({ data, onConfirm }) => {
                     <span className='text-white ms-2'>{data.address}</span>
                 </div>
                 <div>
+                    <strong className='text-xl text-amber-400'>Time:</strong> 
+                    <span className='text-white ms-2'>{format(new Date(data.createdAt), 'dd/MM/yyyy HH:mm:ss')}</span>
+                </div>
+                <div>
                     <strong className='text-xl text-amber-400'>Total Price:</strong>
                     <span className='text-white ms-2'>{data.totalPrice} VND</span>
                 </div>
@@ -123,7 +131,7 @@ const EachOrder = ({ data, onConfirm }) => {
                         {data.items.pizzas.map((pizza, index) => (
                             <tr key={index}>
                                 <td className="p-2 border text-white text-center">Pizza</td>
-                                <td className="p-2 border text-white text-center"><NamePizza id={pizza.pizza}/></td>
+                                <td className="p-2 border text-white text-center"><NamePizza id={pizza.pizza} /></td>
                                 <td className="p-2 border text-white text-center">{pizza.size}</td>
                                 <td className="p-2 border text-white text-center">{pizza.crust}</td>
                                 <td className="p-2 border text-white text-center">{pizza.quantity}</td>
@@ -133,7 +141,8 @@ const EachOrder = ({ data, onConfirm }) => {
                         {data.items.sideDishes.map((sideDish, index) => (
                             <tr key={index}>
                                 <td className="p-2 border text-white text-center">Side Dish</td>
-                                <td className="p-2 border text-white text-center">{sideDish.sideDish ? sideDish.sideDish.name : ''}</td>
+                                {/* <td className="p-2 border text-white text-center">{sideDish.sideDish ? sideDish.sideDish.name : ''}</td> */}
+                                <td className="p-2 border text-white text-center"><NameSideDish id={sideDish.sideDish} /></td>
                                 <td className="p-2 border text-white text-center"></td>
                                 <td className="p-2 border text-white text-center"></td>
                                 <td className="p-2 border text-white text-center">{sideDish.quantity}</td>
@@ -143,7 +152,7 @@ const EachOrder = ({ data, onConfirm }) => {
                         {data.items.combos.map((combo, index) => (
                             <tr key={index}>
                                 <td className="p-2 border text-white text-center">Combo</td>
-                                <td className="p-2 border text-white text-center"></td>
+                                <td className="p-2 border text-white text-center"><NameCombo id={combo.combo}/></td>
                                 <td className="p-2 border text-white text-center"></td>
                                 <td className="p-2 border text-white text-center"></td>
                                 <td className="p-2 border text-white text-center">{combo.quantity}</td>

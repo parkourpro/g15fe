@@ -4,7 +4,7 @@ import EachOrder from '../eachorder';
 
 const Tab6 = () => {
   const [listOrders, setListOrders] = useState([]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,9 +44,30 @@ const Tab6 = () => {
     return <div>Loading...</div>;
   }
 
+  
+  const sortedOrders = listOrders.sort((a, b) => {
+    const statusOrder = {
+      pending: 1, 
+      cancel: 2,  
+      paid: 2,    // Số thứ tự ưu tiên 
+    };
+    
+    const statusA = statusOrder[a.status] || 0;
+    const statusB = statusOrder[b.status] || 0;
+    
+    if (statusA !== statusB) {
+      return statusA - statusB; // Sắp xếp theo trạng thái ưu tiên
+    }
+
+    // Sắp xếp theo updatedAt mới nhất (đảo ngược)
+    const timeA = new Date(a.updatedAt);
+    const timeB = new Date(b.updatedAt);
+    return timeB - timeA;
+  });
+
   return (
     <div>
-      {listOrders.map((each, index) => (
+      {sortedOrders.map((each, index) => (
         // Kiểm tra nếu có sản phẩm và giá trị
         (each.items.pizzas.length > 0 ||
           each.items.sideDishes.length > 0 ||
@@ -63,6 +84,8 @@ const Tab6 = () => {
 };
 
 export default Tab6;
+
+
 
 
 
