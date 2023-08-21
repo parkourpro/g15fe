@@ -4,6 +4,7 @@ import Tab3 from "./tab/tab3"
 import Tab4 from "./tab/tab4"
 import Tab5 from "./tab/tab5"
 import Tab6 from "./tab/tab6"
+import Tab7 from "./tab/tab7"
 
 import TopMain from "./topmainbar"
 
@@ -50,6 +51,12 @@ const Mainbar = ({ activeTab }) => {
                      {activeTab == 'tab6' && <>
                         <div>
                             <Tab6 />
+                        </div>
+                    </>}
+                    {/* main tab7 */}
+                    {activeTab == 'tab7' && <>
+                        <div>
+                            <Tab7 />
                         </div>
                     </>}
                 </div>

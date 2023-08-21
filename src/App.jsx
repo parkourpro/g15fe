@@ -9,6 +9,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   return (
+    <div>
     <Router>
       <Routes>
         <Route path="/" element={<HomeLogin/>}/>
@@ -16,6 +17,7 @@ function App() {
        
       </Routes>
     </Router>
+    </div>
   );
 }
 

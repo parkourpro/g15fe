@@ -1,24 +1,23 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Button } from 'primereact/button';
 import DialogConfirmDelete from '../dialog/confirmdelete';
 import DialogUpdateTopping from '../dialog/updatetoppingform';
-
 
 const EachTopping = ({ data, onDelete, onUpdate }) => {
   const [visible, setVisible] = useState(false);
   const [visibleupdate, setVisibleUpdate] = useState(false);
 
   const showDialogUpdate = () => {
-    setVisibleUpdate(true)
-  }
+    setVisibleUpdate(true);
+  };
+
   const showDialog = () => {
     setVisible(true);
   };
 
   const id = data._id;
-  // console.log(data)
+
   const handleDelete = async () => {
     try {
       const res = await axios.delete(`/toppings/${id}`);
@@ -27,8 +26,6 @@ const EachTopping = ({ data, onDelete, onUpdate }) => {
       console.log(err);
     }
   };
-
-
 
   return (
     <div>
@@ -85,3 +82,6 @@ const EachTopping = ({ data, onDelete, onUpdate }) => {
 };
 
 export default EachTopping;
+
+
+

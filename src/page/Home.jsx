@@ -66,6 +66,14 @@ const Home = () => {
                         <i className="pi pi-shopping-cart p-2 m-2"></i>
                         MANAGE ORDER
                     </div>
+                    {/* //tab7 */}
+                    <div
+                        className={`p-2 cursor-pointer hover:bg-sky-700 ${activeTab == 'tab7' ? 'bg-sky-700' : ''}`}
+                        onClick={() => setActiveTab('tab7')}
+                    >
+                        <i className="pi pi-box p-2 m-2"></i>
+                        Thu nhập
+                    </div>
                 </div>
             </div>
             {/* mainbar */}
