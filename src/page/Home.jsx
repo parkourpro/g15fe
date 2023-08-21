@@ -24,7 +24,7 @@ const Home = () => {
                         onClick={() => setActiveTab('tab1')}
                     >
                         <i className="pi pi-user p-2 m-2"></i>
-                        USER
+                        LIST USER
                     </div>
                     {/* //tab2 */}
                     <div
@@ -47,7 +47,7 @@ const Home = () => {
                         className={`p-2 cursor-pointer hover:bg-sky-700 ${activeTab == 'tab4' ? 'bg-sky-700' : ''}`}
                         onClick={() => setActiveTab('tab4')}
                     >
-                        <i className="pi pi-box p-2 m-2"></i>
+                        <i className="pi pi-palette p-2 m-2"></i>
                         MANAGE SIDE DISHES
                     </div>
                     {/* //tab5 */}
@@ -71,8 +71,8 @@ const Home = () => {
                         className={`p-2 cursor-pointer hover:bg-sky-700 ${activeTab == 'tab7' ? 'bg-sky-700' : ''}`}
                         onClick={() => setActiveTab('tab7')}
                     >
-                        <i className="pi pi-box p-2 m-2"></i>
-                        Thu nhập
+                        <i className="pi pi-money-bill p-2 m-2"></i>
+                        INCOME
                     </div>
                 </div>
             </div>

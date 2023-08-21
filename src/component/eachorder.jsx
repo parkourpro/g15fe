@@ -1,14 +1,17 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import NamePizza from './getnamepizzaorder';
 
 const EachOrder = ({ data, onConfirm }) => {
     const [visible, setVisible] = useState(false);
-    const [isConfirmDialogVisible, setIsConfirmDialogVisible] = useState(false); // Thêm state cho dialog Confirm
-    const [isConfirmed, setIsConfirmed] = useState(data.status === 'paid' || data.status === 'cancel');
-    const id = data._id;
+    const [isConfirmDialogVisible, setIsConfirmDialogVisible] = useState(false);
+    const [isConfirmed, setIsConfirmed] = useState(data.status === 'paid' || data.status === 'cancel')
 
+    const [name, setName] = useState('')
+    const id = data._id;
+    // console.log(id)
     const showDialog = () => {
         setVisible(true);
     };
@@ -34,6 +37,19 @@ const EachOrder = ({ data, onConfirm }) => {
         }
     };
 
+    useEffect(() => {
+        const getUsername = async () => {
+            try {
+                const res = await axios.get(`/users/${data.user}`)
+                // console.log(res.data)
+                setName(res.data.name)
+            }
+            catch (err) {
+                console.log("error: fail to get name ", err)
+            }
+        }
+        getUsername()
+    }, [])
     const handleCancel = async () => {
         try {
             const res = await axios.put(`/orders/${id}`, { status: 'cancel' });
@@ -63,80 +79,86 @@ const EachOrder = ({ data, onConfirm }) => {
     };
 
     return (
-        <div className="my-6 border rounded-lg p-4">
+        <div className="my-6 mx-4  p-4 bg-amber-800">
             <div className="grid grid-cols-2">
-                <div>
-                    <strong>User:</strong> {data.user.name}
+                <div className=''>
+                    <strong className='text-xl text-amber-400'>User:</strong>
+                    <span className='text-white ms-2'>{name}</span>
                 </div>
                 <div>
-                    <strong>Status:</strong> {data.status}
+                    <strong className='text-xl text-amber-400'>Status:</strong>
+                    <span className='text-white ms-2'>{data.status}</span>
                 </div>
                 <div>
-                    <strong>Payment Method:</strong> {data.paymentMethod}
+                    <strong className='text-xl text-amber-400'>Payment Method:</strong>
+                    <span className='text-white ms-2'>{data.paymentMethod}</span>
                 </div>
                 <div>
-                    <strong>Fee Price:</strong> {data.feePrice} VND
+                    <strong className='text-xl text-amber-400'>Fee Price:</strong>
+                    <span className='text-white ms-2'>{data.feePrice} VND</span>
                 </div>
                 <div>
-                    <strong>Address:</strong> {data.address}
+                    <strong className='text-xl text-amber-400'>Address:</strong>
+                    <span className='text-white ms-2'>{data.address}</span>
                 </div>
                 <div>
-                    <strong>Total Price:</strong> {data.totalPrice} VND
+                    <strong className='text-xl text-amber-400'>Total Price:</strong>
+                    <span className='text-white ms-2'>{data.totalPrice} VND</span>
                 </div>
             </div>
             <div className="mt-4">
-                <strong>Items:</strong>
+                {/* <strong>Items:</strong> */}
                 <table className="w-full border-collapse border border-gray-200 mt-2">
                     <thead>
-                        <tr className="bg-gray-100">
-                            <th className="p-2 border border-gray-200">Item</th>
-                            <th className="p-2 border border-gray-200">Name</th>
-                            <th className="p-2 border border-gray-200">Size</th>
-                            <th className="p-2 border border-gray-200">Crust</th>
-                            <th className="p-2 border border-gray-200">Quantity</th>
-                            <th className="p-2 border border-gray-200">Price</th>
+                        <tr className="bg-gray-700">
+                            <th className="p-2 border text-lime-500">Item</th>
+                            <th className="p-2 border text-lime-500">Name</th>
+                            <th className="p-2 border text-lime-500">Size</th>
+                            <th className="p-2 border text-lime-500">Crust</th>
+                            <th className="p-2 border text-lime-500">Quantity</th>
+                            <th className="p-2 border text-lime-500">Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.items.pizzas.map((pizza, index) => (
                             <tr key={index}>
-                                <td className="p-2 border border-gray-200">Pizza</td>
-                                <td className="p-2 border border-gray-200">{pizza.pizza ? pizza.pizza.name:''}</td>
-                                <td className="p-2 border border-gray-200">{pizza.size}</td>
-                                <td className="p-2 border border-gray-200">{pizza.crust}</td>
-                                <td className="p-2 border border-gray-200">{pizza.quantity}</td>
-                                <td className="p-2 border border-gray-200">{pizza.price} VND</td>
+                                <td className="p-2 border text-white text-center">Pizza</td>
+                                <td className="p-2 border text-white text-center"><NamePizza id={pizza.pizza}/></td>
+                                <td className="p-2 border text-white text-center">{pizza.size}</td>
+                                <td className="p-2 border text-white text-center">{pizza.crust}</td>
+                                <td className="p-2 border text-white text-center">{pizza.quantity}</td>
+                                <td className="p-2 border text-white text-center">{pizza.price} VND</td>
                             </tr>
                         ))}
                         {data.items.sideDishes.map((sideDish, index) => (
                             <tr key={index}>
-                                <td className="p-2 border border-gray-200">Side Dish</td>
-                                <td className="p-2 border border-gray-200">{sideDish.sideDish ? sideDish.sideDish.name : ''}</td>
-                                <td className="p-2 border border-gray-200"></td>
-                                <td className="p-2 border border-gray-200"></td>
-                                <td className="p-2 border border-gray-200">{sideDish.quantity}</td>
-                                <td className="p-2 border border-gray-200">{sideDish.price} VND</td>
+                                <td className="p-2 border text-white text-center">Side Dish</td>
+                                <td className="p-2 border text-white text-center">{sideDish.sideDish ? sideDish.sideDish.name : ''}</td>
+                                <td className="p-2 border text-white text-center"></td>
+                                <td className="p-2 border text-white text-center"></td>
+                                <td className="p-2 border text-white text-center">{sideDish.quantity}</td>
+                                <td className="p-2 border text-white text-center">{sideDish.price} VND</td>
                             </tr>
                         ))}
                         {data.items.combos.map((combo, index) => (
                             <tr key={index}>
-                                <td className="p-2 border border-gray-200">Combo</td>
-                                <td className="p-2 border border-gray-200"></td>
-                                <td className="p-2 border border-gray-200"></td>
-                                <td className="p-2 border border-gray-200"></td>
-                                <td className="p-2 border border-gray-200">{combo.quantity}</td>
-                                <td className="p-2 border border-gray-200">{combo.price} VND</td>
+                                <td className="p-2 border text-white text-center">Combo</td>
+                                <td className="p-2 border text-white text-center"></td>
+                                <td className="p-2 border text-white text-center"></td>
+                                <td className="p-2 border text-white text-center"></td>
+                                <td className="p-2 border text-white text-center">{combo.quantity}</td>
+                                <td className="p-2 border text-white text-center">{combo.price} VND</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            <div className="mt-2 flex items-center">
+            <div className="mt-3 flex items-center">
                 {!isConfirmed && data.status === 'pending' && (
                     <Button
                         icon="pi pi-check"
                         label="Confirm"
-                        className="p-button-success"
+                        className="bg-amber-500 rounded-full mx-2"
                         onClick={handleConfirm}
                     />
                 )}
@@ -144,7 +166,7 @@ const EachOrder = ({ data, onConfirm }) => {
                     <Button
                         icon="pi pi-times"
                         label="Cancel"
-                        className="p-button-danger"
+                        className="bg-amber-500 rounded-full mx-2"
                         onClick={showDialog}
                     />
                 )}

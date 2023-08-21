@@ -63,20 +63,20 @@ const Tab1 = () => {
                 icon='pi pi-search'
                 onClick={handleSearch} />
             </div>
-            <div className="grid grid-cols-6 gap-4">
-                <div className="py-2 px-4 font-bold text-orange-500 text-2xl">
+            <div className="grid grid-cols-6 gap-4 text-yellow-300 font-bold text-2xl">
+                <div className="py-2 px-4 ">
                     Username
                 </div>
-                <div className="py-2 px-4 font-bold text-orange-500 text-2xl">
+                <div className="py-2 px-4 ">
                     Name
                 </div>
-                <div className="py-2 px-4 col-span-2 font-bold text-orange-500 text-2xl">
+                <div className="py-2 px-4 col-span-2">
                     Email
                 </div>
-                <div className="py-2 px-4 font-bold text-orange-500 text-2xl">
+                <div className="py-2 px-4">
                     Phone
                 </div>
-                <div className="py-2 px-4 font-bold text-orange-500 text-2xl">
+                <div className="py-2 px-4">
                     Action
                 </div>
             </div>

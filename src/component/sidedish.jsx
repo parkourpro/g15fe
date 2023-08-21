@@ -8,7 +8,9 @@ const SideDishName = ({id}) =>{
             try {
                 const response = await axios.get(`/side-dishes/${id}`); 
                 setSideDishName(response.data.name)
-            } catch (error) { console.error('Failed to fetch pizzas', error) }
+            } catch (error) {
+                 console.error('Failed to fetch pizzas', error) 
+                }
         }
         fetchPizzas()
     }, []);

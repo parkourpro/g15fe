@@ -205,10 +205,10 @@ function Tab7() {
   };
 
   return (
-    <div className="container mx-auto p-8">
-      <h2 className="text-2xl font-semibold mb-4">Thống kê Thu nhập</h2>
+    <div className="mx-auto">
+      {/* <h2 className="text-2xl font-semibold mb-4">Thống kê Thu nhập</h2> */}
 
-      <div className="bg-white rounded-lg p-4 shadow">
+      <div className="bg-white p-4 shadow">
         {/* Biểu đồ */}
         <div className="w-full h-400">
           <CanvasJSChart options={options} />
@@ -216,19 +216,19 @@ function Tab7() {
       </div>
 
       {/* Thu nhập tháng này */}
-      <div className="bg-white rounded-lg p-4 shadow">
+      <div className="bg-white p-4 shadow">
         <h3 className="text-lg font-semibold">Tổng Thu Nhập Tháng Này</h3>
         <p className="text-3xl font-bold text-green-600">{TotalInMonth}₫</p>
       </div>
 
       {/* Thu nhập ngày hôm nay */}
-      <div className="bg-white rounded-lg p-4 shadow">
+      <div className="bg-white p-4 shadow">
         <h3 className="text-lg font-semibold">Tổng Thu Nhập Ngày Hôm Nay</h3>
         <p className="text-3xl font-bold text-green-600">{totalInToday}₫</p>
       </div>
 
       {/* Tổng số đơn hàng đang chờ xử lý */}
-      <div className="bg-white rounded-lg p-4 shadow">
+      <div className="bg-white p-4 shadow">
         <h3 className="text-lg font-semibold">Số Đơn Hàng Chờ Xử Lý</h3>
         <p className="text-2xl font-bold text-red-600">{pendingOrdersCount} đơn hàng</p>
       </div>
