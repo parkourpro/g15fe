@@ -8,7 +8,7 @@ const Tab6 = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/orders'); // Đường dẫn API đơn hàng
+        const response = await axios.get('/orders'); 
         if (response.status === 200) {
           setListOrders(response.data);
         } else {

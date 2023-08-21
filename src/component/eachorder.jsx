@@ -101,7 +101,7 @@ const EachOrder = ({ data, onConfirm }) => {
                         {data.items.pizzas.map((pizza, index) => (
                             <tr key={index}>
                                 <td className="p-2 border border-gray-200">Pizza</td>
-                                <td className="p-2 border border-gray-200">{pizza.pizza.name}</td>
+                                <td className="p-2 border border-gray-200">{pizza.pizza ? pizza.pizza.name:''}</td>
                                 <td className="p-2 border border-gray-200">{pizza.size}</td>
                                 <td className="p-2 border border-gray-200">{pizza.crust}</td>
                                 <td className="p-2 border border-gray-200">{pizza.quantity}</td>
