@@ -4,7 +4,7 @@ import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import Footer from "../component/Footer";
 import { useNavigate } from "react-router-dom";
-
+import sideImage from '../img/sid.jpg'
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -50,7 +50,8 @@ export default function LoginPage() {
 
 
   return (
-    <div className="flex flex-col min-h-screen bg-orange-950">
+    <div className="flex flex-col min-h-screen bg-orange-950"
+    style={{ backgroundImage: `url(${sideImage})` }}>
       <div className="mb-auto lg:w-1/3 mx-auto mt-auto rounded-3xl bg-stone-900 p-10 ">
         <h1 className="text-2xl uppercase font-semibold text-orange-400 pb-2 text-center">
           Welcome back

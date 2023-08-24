@@ -9,7 +9,7 @@ const NameSideDish = ({ id }) => {
             try {
                 const res = await axios.get(`/side-dishes/${id}`)
                 setName(res.data.name)
-                console.log("đây"+res.data.name);
+                // console.log("đây"+res.data.name);
             } catch (err) {
                 console.log("Failed to get Side Dish Name: ", err)
             }
