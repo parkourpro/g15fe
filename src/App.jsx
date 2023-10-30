@@ -6,7 +6,8 @@ import Home from "./page/Home";
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3001/";
 axios.defaults.withCredentials = true;
-
+//xin chào
+//xin chào các bạn
 function App() {
   return (
     <div>
